@@ -31,12 +31,19 @@ api.interceptors.response.use(
 export const authAPI = {
   register: (data) => api.post('/auth/register', data),
   login: (data) => api.post('/auth/login', data),
-  getMe: () => api.get('/auth/me')
+  getMe: () => api.get('/auth/me'),
+  resendVerification: (email) => api.post('/auth/resend-verification', { email }),
+  forgotPassword: (email) => api.post('/auth/forgot-password', { email }),
+  resetPassword: (token, password) => api.post(`/auth/reset-password/${token}`, { password })
 };
 
 export const profileAPI = {
+  getMe: () => api.get('/profile/me'),
   getProfile: (id) => api.get(`/profile/${id}`),
   updateProfile: (data) => api.put('/profile/profile', data),
+  uploadPhoto: (formData) => api.put('/profile/photo', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' }
+  }),
   updatePreferences: (data) => api.put('/profile/preferences', data),
   updateWeights: (data) => api.put('/profile/weights', data)
 };
@@ -46,14 +53,6 @@ export const matchAPI = {
   likeUser: (userId) => api.post(`/matches/like/${userId}`),
   passUser: (userId) => api.post(`/matches/pass/${userId}`),
   getMatches: () => api.get('/matches')
-};
-
-export const listingAPI = {
-  createListing: (data) => api.post('/listings', data),
-  getListings: (params) => api.get('/listings', { params }),
-  getListing: (id) => api.get(`/listings/${id}`),
-  updateListing: (id, data) => api.put(`/listings/${id}`, data),
-  deleteListing: (id) => api.delete(`/listings/${id}`)
 };
 
 export const reviewAPI = {
@@ -69,7 +68,12 @@ export const reportAPI = {
 };
 
 export const verificationAPI = {
-  submitDocuments: (data) => api.post('/verification/submit', data),
+  uploadId: (formData) => api.post('/verification/upload-id', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' }
+  }),
+  captureSelfie: (formData) => api.post('/verification/capture-selfie', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' }
+  }),
   verify: () => api.post('/verification/verify'),
   getStatus: () => api.get('/verification/status')
 };
@@ -84,6 +88,25 @@ export const adminAPI = {
   getReports: () => api.get('/admin/reports'),
   updateReport: (id, data) => api.put(`/admin/reports/${id}`, data),
   getStats: () => api.get('/admin/stats')
+};
+
+export const otpAPI = {
+  sendOTP: (phoneNumber) => api.post('/otp/send', { phoneNumber }),
+  verifyOTP: (phoneNumber, otp) => api.post('/otp/verify', { phoneNumber, otp }),
+  getStatus: () => api.get('/otp/status')
+};
+
+export const livenessAPI = {
+  capture: (formData) => api.post('/liveness/capture', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' }
+  }),
+  verify: () => api.post('/liveness/verify'),
+  getStatus: () => api.get('/liveness/status')
+};
+
+export const socialAPI = {
+  saveLinks: (links) => api.post('/social/save', links),
+  getLinks: () => api.get('/social/my-links')
 };
 
 export default api;
