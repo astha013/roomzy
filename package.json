@@ -1,0 +1,11 @@
+{
+  "name": "roomzy-final",
+  "version": "1.0.0",
+  "description": "A full-stack MERN app for finding compatible roommates using smart compatibility scoring and a layered trust verification system.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
