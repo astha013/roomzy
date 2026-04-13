@@ -39,7 +39,7 @@ export default function Home() {
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'visible',
-    minHeight: 800,
+    minHeight: 750,
   };
 
   const statsStyle = {
@@ -98,21 +98,21 @@ export default function Home() {
           <div style={{ position:'absolute',width:'clamp(280px, 50vw, 400px)',height:'clamp(280px, 50vw, 400px)',borderRadius:'50%',border:'1px solid var(--parchment-3)',top:'50%',left:'50%',transform:'translate(-50%,-50%)' }} />
           <div style={{ position:'absolute',width:'clamp(180px, 35vw, 280px)',height:'clamp(180px, 35vw, 280px)',borderRadius:'50%',background:'var(--terra-light)',opacity:0.4,top:'20%',right:'10%' }} />
 
-          <div className="float-cards-container" style={{ position: 'relative', width: 360, height: 800, padding: '40px 0' }}>
+          <div className="float-cards-container" style={{ position: 'relative', width: 360, height: 700, padding: '40px 0' }}>
             {/* Card 1 - Priya (top left) */}
             <FloatCard style={{ top: 40, left: 0, animationDelay: '0s' }}>
               <MiniMatchCard name="Priya Sharma" city="Koramangala, Bangalore" score={92} trust={78} intent="have_room_need_roommate" />
             </FloatCard>
             {/* Card 2 - Arjun (middle right) */}
-            <FloatCard style={{ top: 230, right: 0, animationDelay: '1.4s' }}>
+            <FloatCard style={{ top: 220, right: 0, animationDelay: '1.4s' }}>
               <MiniMatchCard name="Arjun Kapoor" city="Bandra, Mumbai" score={85} trust={62} intent="looking_for_roommate" />
             </FloatCard>
             {/* Card 3 - Neha (bottom left) */}
-            <FloatCard style={{ top: 420, left: 0, animationDelay: '2.8s' }}>
+            <FloatCard style={{ top: 400, left: 0, animationDelay: '2.8s' }}>
               <MiniMatchCard name="Neha Kulkarni" city="Hinjewadi, Pune" score={78} trust={55} intent="have_room_need_roommate" />
             </FloatCard>
             {/* Card 4 - Rahul (extra card bottom right) */}
-            <FloatCard style={{ top: 610, right: 0, animationDelay: '3.5s' }}>
+            <FloatCard style={{ top: 580, right: 0, animationDelay: '3.5s' }}>
               <MiniMatchCard name="Rahul Verma" city="Andheri, Mumbai" score={81} trust={70} intent="have_room_need_roommate" />
             </FloatCard>
           </div>
@@ -146,9 +146,11 @@ export default function Home() {
       {/* ── TRUST SYSTEM ─────────────────────────────────────────────── */}
       <section style={{ padding: 'clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 5rem)', background: 'var(--clay)', color: 'var(--parchment)' }}>
         <div className="container">
-          <h2 style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', fontWeight: 700, marginBottom: '0.75rem' }}>A trust system<br />that actually works</h2>
-          <p style={{ color: 'var(--clay-4)', fontSize: 'clamp(0.9rem, 2vw, 1.05rem)', marginBottom: 'clamp(2rem, 5vw, 3.5rem)', maxWidth: 480 }}>No government ID required to start. Build trust through multiple verified layers.</p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 'clamp(1rem, 3vw, 1.25rem)' }}>
+          <div style={{ textAlign: 'center' }}>
+            <h2 style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', fontWeight: 700, marginBottom: '0.75rem' }}>A trust system<br />that actually works</h2>
+            <p style={{ color: 'var(--clay-4)', fontSize: 'clamp(0.9rem, 2vw, 1.05rem)', marginBottom: 'clamp(2rem, 5vw, 3.5rem)', maxWidth: 480, margin: '0 auto' }}>No government ID required to start. Build trust through multiple verified layers.</p>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'clamp(1rem, 3vw, 1.25rem)' }}>
             {TRUST_LAYERS.map(({ icon, pts, title, desc }) => (
               <div key={title} style={{
                 border: '1px solid rgba(255,255,255,0.1)', borderRadius: 'var(--r-lg)',
@@ -207,13 +209,15 @@ function MiniMatchCard({ name, city, score, trust, intent }) {
       <div style={{ height: 4, background: 'var(--parchment-3)', borderRadius: 100, overflow: 'hidden', marginBottom: '0.25rem' }}>
         <div style={{ width: `${score}%`, height: '100%', background: barColor, borderRadius: 100 }} />
       </div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 'clamp(0.6rem, 1.2vw, 0.68rem)', color: 'var(--clay-3)', marginBottom: '0.5rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 'clamp(0.6rem, 1.2vw, 0.68rem)', color: 'var(--clay-3)', marginBottom: '0.5rem' }}>
         <span>Compatibility</span>
         <strong style={{ color: barColor }}>{score}%</strong>
       </div>
-      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, background: 'var(--forest-light)', color: 'var(--forest-text)', fontSize: '0.65rem', fontWeight: 700, padding: '3px 8px', borderRadius: 100 }}>
-        ✓ Trust {trust}
-      </span>
+      <div style={{ textAlign: 'center' }}>
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, background: 'var(--forest-light)', color: 'var(--forest-text)', fontSize: '0.65rem', fontWeight: 700, padding: '3px 8px', borderRadius: 100 }}>
+          ✓ Trust {trust}
+        </span>
+      </div>
     </div>
   );
 }

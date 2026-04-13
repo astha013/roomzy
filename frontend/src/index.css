@@ -473,11 +473,11 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.15); }
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    gap: 130px !important;
+    gap: 120px !important;
     width: 100% !important;
     height: auto !important;
-    min-height: 1000px !important;
-    padding: 3rem 0 !important;
+    min-height: 850px !important;
+    padding: 2rem 0 !important;
   }
   .float-cards-container > div {
     position: relative !important;
@@ -487,20 +487,8 @@ input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.15); }
     bottom: auto !important;
   }
   /* Alternate positions: left, right, left, right */
-  .float-cards-container > div:nth-child(1) {
-    margin-right: auto;
-    margin-left: 0;
-  }
-  .float-cards-container > div:nth-child(2) {
-    margin-left: auto;
-    margin-right: 0;
-  }
-  .float-cards-container > div:nth-child(3) {
-    margin-right: auto;
-    margin-left: 0;
-  }
-  .float-cards-container > div:nth-child(4) {
-    margin-left: auto;
-    margin-right: 0;
-  }
+  .float-cards-container > div:nth-child(1) { margin-right: auto; margin-left: 0; }
+  .float-cards-container > div:nth-child(2) { margin-left: auto; margin-right: 0; }
+  .float-cards-container > div:nth-child(3) { margin-right: auto; margin-left: 0; }
+  .float-cards-container > div:nth-child(4) { margin-left: auto; margin-right: 0; }
 }
