@@ -3,6 +3,7 @@ import { otpApi, livenessApi, socialApi, verificationApi } from '../api';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 import { TrustRing, TrustLayerRow, Spinner } from '../components/UI';
+import Footer from '../components/Footer';
 
 export default function Trust() {
   const { user, refreshUser, trustScore } = useAuth();
@@ -81,6 +82,7 @@ export default function Trust() {
           </p>
         </LayerCard>
       </div>
+      <Footer />
     </div>
   );
 }

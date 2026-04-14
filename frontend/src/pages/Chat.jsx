@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import { useSocket } from '../hooks/useSocket';
 import { useToast } from '../context/ToastContext';
 import { Avatar, Spinner } from '../components/UI';
+import Footer from '../components/Footer';
 
 export default function Chat() {
   const { user, canChat, trustScore } = useAuth();
@@ -268,5 +269,6 @@ export default function Chat() {
         </div>
       )}
     </div>
+    <Footer />
   );
 }

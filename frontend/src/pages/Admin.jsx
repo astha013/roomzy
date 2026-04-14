@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { adminApi } from '../api';
 import { useToast } from '../context/ToastContext';
 import { Avatar, Spinner } from '../components/UI';
+import Footer from '../components/Footer';
 
 export default function Admin() {
   const toast = useToast();
@@ -139,11 +140,10 @@ export default function Admin() {
                   <button className="btn btn-sm" style={{ background:'var(--warning)',color:'white',border:'none',borderRadius:100,cursor:'pointer' }} onClick={() => resolveReport(r._id,'resolved','warned')}>Warn user</button>
                   <button className="btn btn-sm btn-danger" onClick={() => resolveReport(r._id,'resolved','block')}>Block user</button>
                 </div>
-              )}
-            </div>
-          ))}
+          )}
         </div>
       ) : null}
     </div>
+    <Footer />
   );
 }

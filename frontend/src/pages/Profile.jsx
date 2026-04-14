@@ -3,6 +3,7 @@ import { profileApi } from '../api';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 import { Avatar, TrustRing, Spinner } from '../components/UI';
+import Footer from '../components/Footer';
 
 const CITIES = ['Mumbai','Pune','Bangalore','Delhi','Hyderabad','Chennai','Kolkata','Ahmedabad','Jaipur','Surat'];
 
@@ -406,6 +407,7 @@ export default function Profile() {
           )}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

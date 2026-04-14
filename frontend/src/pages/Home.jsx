@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import Footer from '../components/Footer';
 
 const CITIES = ['Mumbai', 'Pune', 'Bangalore', 'Delhi', 'Hyderabad', 'Chennai'];
 
@@ -176,6 +177,8 @@ export default function Home() {
         <p style={{ color: 'var(--clay-3)', fontSize: 'clamp(0.95rem, 2vw, 1.1rem)', marginBottom: 'clamp(1.5rem, 4vw, 2rem)' }}>Join 12,000+ people who found their perfect match</p>
         <button className="btn btn-terra btn-lg" onClick={() => navigate('/register')}>Get started — it's free</button>
       </section>
+
+      <Footer />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { matchApi } from '../api';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 import { Avatar, ScoreRing, CompatBreakdown, SkeletonCard, IntentBadge, MatchModal, Spinner } from '../components/UI';
+import Footer from '../components/Footer';
 
 // Helper for responsive clamp
 const clamp = (min, preferred, max) => `clamp(${min}, ${preferred}, ${max})`;
@@ -185,6 +186,8 @@ export default function Matches() {
           onChat={() => { setMatchModal(null); navigate('/chat'); }}
         />
       )}
+
+      <Footer />
     </div>
   );
 }
