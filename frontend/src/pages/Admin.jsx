@@ -140,10 +140,12 @@ export default function Admin() {
                   <button className="btn btn-sm" style={{ background:'var(--warning)',color:'white',border:'none',borderRadius:100,cursor:'pointer' }} onClick={() => resolveReport(r._id,'resolved','warned')}>Warn user</button>
                   <button className="btn btn-sm btn-danger" onClick={() => resolveReport(r._id,'resolved','block')}>Block user</button>
                 </div>
-          )}
+              )}
+            </div>
+          ))}
         </div>
       ) : null}
+      <Footer />
     </div>
-    <Footer />
   );
 }

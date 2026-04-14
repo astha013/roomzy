@@ -122,7 +122,8 @@ export default function Chat() {
   const activeOther = activeChat?.participants?.find(p => (p._id || p) !== user?._id);
 
   return (
-    <div className="page-pad" style={{ height: '100vh', display: 'grid', gridTemplateColumns: 'clamp(250px, 30vw, 300px) 1fr' }}>
+    <div className="page-pad" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ flex: 1, display: 'grid', gridTemplateColumns: 'clamp(250px, 30vw, 300px) 1fr' }}>
       {/* Sidebar */}
       <div style={{ borderRight: '1px solid var(--parchment-3)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
         <div style={{ padding: 'clamp(1rem, 3vw, 1.25rem) clamp(0.75rem, 2vw, 1rem) clamp(0.5rem, 2vw, 0.75rem)', borderBottom: '1px solid var(--parchment-3)' }}>
@@ -268,7 +269,8 @@ export default function Chat() {
           <p style={{ fontSize: 'clamp(0.8rem, 1.5vw, 0.85rem)' }}>Mutual matches appear here</p>
         </div>
       )}
+      </div>
+      <Footer />
     </div>
-    <Footer />
   );
 }
