@@ -100,19 +100,19 @@ export default function Home() {
 
           <div className="float-cards-container" style={{ position: 'relative', width: 360, height: 700, padding: '40px 0' }}>
             {/* Card 1 - Priya (top left) */}
-            <FloatCard style={{ top: 40, left: 0, animationDelay: '0s' }}>
+            <FloatCard style={{ top: 20, left: 0, animationDelay: '0s' }}>
               <MiniMatchCard name="Priya Sharma" city="Koramangala, Bangalore" score={92} trust={78} intent="have_room_need_roommate" />
             </FloatCard>
             {/* Card 2 - Arjun (middle right) */}
-            <FloatCard style={{ top: 220, right: 0, animationDelay: '1.4s' }}>
+            <FloatCard style={{ top: 210, right: 0, animationDelay: '1.4s' }}>
               <MiniMatchCard name="Arjun Kapoor" city="Bandra, Mumbai" score={85} trust={62} intent="looking_for_roommate" />
             </FloatCard>
             {/* Card 3 - Neha (bottom left) */}
-            <FloatCard style={{ top: 400, left: 0, animationDelay: '2.8s' }}>
+            <FloatCard style={{ top: 380, left: 0, animationDelay: '2.8s' }}>
               <MiniMatchCard name="Neha Kulkarni" city="Hinjewadi, Pune" score={78} trust={55} intent="have_room_need_roommate" />
             </FloatCard>
             {/* Card 4 - Rahul (extra card bottom right) */}
-            <FloatCard style={{ top: 580, right: 0, animationDelay: '3.5s' }}>
+            <FloatCard style={{ top: 550, right: 0, animationDelay: '3.5s' }}>
               <MiniMatchCard name="Rahul Verma" city="Andheri, Mumbai" score={81} trust={70} intent="have_room_need_roommate" />
             </FloatCard>
           </div>
