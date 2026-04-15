@@ -86,7 +86,7 @@ export default function Matches() {
   const profileIncomplete = !user?.preferences?.moveInDate || !user?.city || !user?.intent;
 
   return (
-    <div className="page-pad" style={{ padding: 'calc(68px + clamp(1rem, 3vw, 2rem)) clamp(1rem, 3vw, 3rem) clamp(1rem, 3vw, 2rem)', minHeight: '100vh' }}>
+    <div className="page-pad" style={{ padding: 'calc(68px + clamp(1rem, 3vw, 2rem)) clamp(0.0001rem, 3vw, 0.0001rem) clamp(0.0001rem, 3vw, 0.0001rem)', minHeight: '100vh' }}>
       {/* Trust gate */}
       {!canChat && (
         <div className="trust-gate" style={{ marginBottom: '1.5rem', flexWrap: 'wrap' }}>

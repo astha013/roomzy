@@ -25,11 +25,11 @@ export default function Footer() {
     <footer style={{
       background: 'var(--clay)',
       color: 'var(--parchment)',
-      padding: 'clamp(2rem, 5vw, 4rem) clamp(1rem, 3vw, 3rem)',
+      padding: 'clamp(1rem, 4vw, 2rem) clamp(1rem, 3vw, 3rem)',
       marginTop: 'auto',
     }}>
       <div style={{
-        maxWidth: 1100,
+        maxWidth: 2500,
         margin: '0 auto',
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
@@ -98,7 +98,7 @@ export default function Footer() {
 
       {/* Bottom */}
       <div style={{
-        maxWidth: 1100,
+        maxWidth: 2500,
         margin: '3rem auto 0',
         paddingTop: '1.5rem',
         borderTop: '1px solid rgba(255,255,255,0.1)',

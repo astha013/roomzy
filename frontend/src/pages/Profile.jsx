@@ -173,8 +173,8 @@ export default function Profile() {
   const setP = (k, v) => setPrefs(p => ({ ...p, [k]: v }));
 
   return (
-    <div className="page-pad" style={{ padding: '2rem 0', minHeight: '100vh' }}>
-      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 2rem', display: 'grid', gridTemplateColumns: '1fr 340px', gap: '2rem', alignItems: 'start' }}>
+    <div className="page-pad" style={{ minHeight: '100vh' }}>
+      <div style={{ maxWidth: 1100, margin: '1rem auto', padding: '0 2rem', display: 'grid', gridTemplateColumns: '1fr 340px', gap: '2rem', alignItems: 'start' }}>
 
         {/* ── LEFT: forms ── */}
         <div>
@@ -355,10 +355,18 @@ export default function Profile() {
             </button>
           </div>
         </div>
-
+        
         {/* ── RIGHT: trust snapshot ── */}
         <div style={{ position: 'sticky', top: 84 }}>
-          <div className="card" style={{ padding: '1.75rem', marginBottom: '1rem' }}>
+          {/* AI Summary */}
+          {user?.aiSummary && (
+            <div className="card" style={{ padding: '1.25rem' }}>
+              <p style={{ fontSize: '0.7rem', fontWeight: 800, color: 'var(--clay-3)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '0.75rem' }}>✨ AI Personality Summary</p>
+              <p style={{ fontSize: '0.85rem', color: 'var(--clay-2)', lineHeight: 1.65, fontStyle: 'italic' }}>"{user.aiSummary}"</p>
+              <p style={{ fontSize: '0.7rem', color: 'var(--clay-3)', marginTop: '0.625rem' }}>Auto-generated from your preferences</p>
+            </div>
+          )}
+          <div className="card" style={{ padding: '1.75rem',marginTop: '1rem', marginBottom: '1rem' }}>
             <h3 style={{ fontFamily: 'var(--font-body)', fontWeight: 800, fontSize: '1rem', marginBottom: '1.25rem' }}>Your Trust Score</h3>
             <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', marginBottom: '1.5rem' }}>
               <TrustRing score={user?.trustScore ?? 0} size={88} strokeWidth={7} />
@@ -397,14 +405,6 @@ export default function Profile() {
             </a>
           </div>
 
-          {/* AI Summary */}
-          {user?.aiSummary && (
-            <div className="card" style={{ padding: '1.25rem' }}>
-              <p style={{ fontSize: '0.7rem', fontWeight: 800, color: 'var(--clay-3)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '0.75rem' }}>✨ AI Personality Summary</p>
-              <p style={{ fontSize: '0.85rem', color: 'var(--clay-2)', lineHeight: 1.65, fontStyle: 'italic' }}>"{user.aiSummary}"</p>
-              <p style={{ fontSize: '0.7rem', color: 'var(--clay-3)', marginTop: '0.625rem' }}>Auto-generated from your preferences</p>
-            </div>
-          )}
         </div>
       </div>
       <Footer />
@@ -414,7 +414,7 @@ export default function Profile() {
 
 function SectionTitle({ children }) {
   return (
-    <h3 style={{ fontFamily: 'var(--font-body)', fontSize: '0.95rem', fontWeight: 800, marginBottom: '1.25rem', paddingBottom: '0.75rem', borderBottom: '1px solid var(--parchment-3)', color: 'var(--clay)' }}>
+    <h3 style={{ fontFamily: 'var(--font-body)', fontSize: '0.95rem', fontWeight: 800, marginBottom: '0.75rem', paddingBottom: '0.75rem', borderBottom: '1px solid var(--parchment-3)', color: 'var(--clay)' }}>
       {children}
     </h3>
   );

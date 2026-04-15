@@ -10,7 +10,7 @@ export default function Trust() {
   const toast = useToast();
 
   return (
-    <div className="page-pad" style={{ minHeight: '100vh', padding: '2.5rem 2rem' }}>
+    <div className="page-pad" style={{ minHeight: '100vh', padding: '0rem 0rem', marginTop: '6rem' }}>
       <div style={{ maxWidth: 760, margin: '0 auto' }}>
 
         {/* Header */}
