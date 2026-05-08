@@ -1,0 +1,8 @@
+# Backend specific
+uploads/
+*.sqlite
+*.db
+.env
+node_modules/
+*.log
+.DS_Store
