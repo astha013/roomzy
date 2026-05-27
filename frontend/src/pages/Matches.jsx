@@ -45,8 +45,11 @@ export default function Matches() {
       }
     } catch (err) {
       const msg = err.response?.data?.message || '';
-      if (msg.includes('move-in date') || msg.includes('intent')) {
-        toast('Complete your profile to see matches', 'warning');
+      if (err.response?.status === 400) {
+        // Profile incomplete — show warning but don't crash
+        toast(msg || 'Complete your profile to see matches', 'warning');
+      } else {
+        toast('Could not load suggestions. Is the backend running?', 'error');
       }
     } finally {
       setLoading(false);

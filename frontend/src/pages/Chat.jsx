@@ -34,13 +34,26 @@ function groupByDate(messages) {
 
 function ContextMenu({ x, y, items, onClose }) {
   const ref = useRef(null);
+  const [pos, setPos] = useState({ top: y, left: x });
+
   useEffect(() => {
     const handler = (e) => { if (ref.current && !ref.current.contains(e.target)) onClose(); };
     document.addEventListener('mousedown', handler);
     return () => document.removeEventListener('mousedown', handler);
   }, [onClose]);
+
+  // Clamp to viewport so menu never overflows right/bottom edges
+  useEffect(() => {
+    if (!ref.current) return;
+    const { offsetWidth: w, offsetHeight: h } = ref.current;
+    setPos({
+      top:  Math.min(y, window.innerHeight - h - 8),
+      left: Math.min(x, window.innerWidth  - w - 8),
+    });
+  }, [x, y]);
+
   return (
-    <div ref={ref} style={{ position: 'fixed', top: y, left: x, zIndex: 9999, background: 'white', borderRadius: 10, boxShadow: '0 8px 32px rgba(0,0,0,0.16)', border: '1px solid var(--parchment-3)', minWidth: 165, overflow: 'hidden' }}>
+    <div ref={ref} style={{ position: 'fixed', top: pos.top, left: pos.left, zIndex: 9999, background: 'white', borderRadius: 10, boxShadow: '0 8px 32px rgba(0,0,0,0.16)', border: '1px solid var(--parchment-3)', minWidth: 165, overflow: 'hidden' }}>
       {items.map((item, i) => (
         <button key={i} onClick={() => { item.action(); onClose(); }}
           style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', width: '100%', background: 'none', border: 'none', cursor: 'pointer', padding: '0.625rem 1rem', textAlign: 'left', fontSize: '0.82rem', fontFamily: 'var(--font-body)', color: item.danger ? 'var(--danger)' : 'var(--clay)', fontWeight: 600 }}
@@ -405,7 +418,7 @@ export default function Chat() {
         <ContextMenu x={chatMenu.x} y={chatMenu.y} onClose={() => setChatMenu(null)}
           items={[
             { icon: '🗑️', label: 'Delete conversation', danger: true, action: () => { const other = chatMenu.chat.participants?.find(p => (p._id || p) !== user?._id); setDeleteChatDialog({ chatId: chatMenu.chatId, name: other?.name || 'this user' }); } },
-            { icon: '🚫', label: 'Block user', danger: true, action: () => { const other = chatMenu.chat.participants?.find(p => (p._id || p) !== user?._id); setBlockDialog({ userId: other?._id || other, name: other?.name || 'this user' }); } },
+            { icon: '🚫', label: 'Block and Report user', danger: true, action: () => { const other = chatMenu.chat.participants?.find(p => (p._id || p) !== user?._id); setBlockDialog({ userId: other?._id || other, name: other?.name || 'this user' }); } },
           ]}
         />
       )}

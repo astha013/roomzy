@@ -137,7 +137,7 @@ router.post('/login', [
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
-    if (!user.isEmailVerified) {
+    if (!user.isEmailVerified && process.env.NODE_ENV === 'production') {
       return res.status(403).json({ 
         message: 'Please verify your email first',
         requiresVerification: true,

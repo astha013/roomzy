@@ -10,9 +10,9 @@ router.get('/suggestions', protect, async (req, res) => {
   try {
     const currentUser = await User.findById(req.user._id);
 
-    if (!currentUser.preferences?.moveInDate || !currentUser.city || !currentUser.intent) {
+    if (!currentUser.city || !currentUser.intent) {
       return res.status(400).json({
-        message: 'Please set intent, move-in date and city in your profile',
+        message: 'Please set your intent and city in your profile',
       });
     }
 
@@ -21,9 +21,13 @@ router.get('/suggestions', protect, async (req, res) => {
         ? 'looking_for_roommate'
         : 'have_room_need_roommate';
 
-    const moveInDate = new Date(currentUser.preferences.moveInDate);
-    const minDate = new Date(moveInDate.getTime() - 15 * 24 * 60 * 60 * 1000);
-    const maxDate = new Date(moveInDate.getTime() + 15 * 24 * 60 * 60 * 1000);
+    // moveInDate filter is optional — only apply if user has set one
+    let minDate, maxDate;
+    if (currentUser.preferences?.moveInDate) {
+      const moveInDate = new Date(currentUser.preferences.moveInDate);
+      minDate = new Date(moveInDate.getTime() - 30 * 24 * 60 * 60 * 1000);
+      maxDate = new Date(moveInDate.getTime() + 30 * 24 * 60 * 60 * 1000);
+    }
 
    // Get all user IDs already interacted with (liked, matched, rejected)
 const existingMatches = await Match.find({
@@ -37,13 +41,15 @@ const interactedIds = existingMatches.map(m =>
 const excludedIds = [currentUser._id, ...(currentUser.blockedUsers || []), ...interactedIds];
     // ── Base filters ───────────────────────────────────────────────────────
     const query = {
-      _id:    { $nin: excludedIds },
-      city:   currentUser.city,
-      intent: oppositeIntent,
-      'preferences.moveInDate': { $gte: minDate, $lte: maxDate },
-      trustScore: { $gte: 30 },
-      isBlocked:  false,
+      _id:      { $nin: excludedIds },
+      city:     currentUser.city,
+      intent:   oppositeIntent,
+      isBlocked: false,
     };
+    // Only filter by moveInDate if current user has set one
+    if (minDate && maxDate) {
+      query['preferences.moveInDate'] = { $gte: minDate, $lte: maxDate };
+    }
 
     // ── Food habit (HARD) ──────────────────────────────────────────────────
     // Veg users must ONLY see other veg users — never eggetarian or non-veg.
